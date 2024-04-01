@@ -59,9 +59,9 @@ Then, run ALKIA-X as follows:
 You can run ALKIA-X as follows:
 ```
 conda activate ALKIAX
-taskset $(seq -s, 1 10) python ALKIAX_main.py
+taskset $(seq -s, 1 8) python ALKIAX_main.py
 ```
-This exact line will lead to a parallelization on CPU cores 1-10.
+This exact line will lead to a parallelization on CPU cores 1-8.
 
 ## Using pre-trained approximations 
 The pre-trained pickle files for the continous stirred tank reactor or the cold atmospheric plasma device are "CSTR_final.pickle" and "plasma_final.pickle", respectively.
