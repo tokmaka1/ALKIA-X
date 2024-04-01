@@ -18,9 +18,10 @@ Create a conda environment
 ```
 conda create --name ALKIAX
 ```
-additionally install the following packages:
+and install the following packages:
 ```
 pip install scikit-learn
+pip install casadi
 ```
 
 
@@ -59,7 +60,7 @@ Then, run ALKIA-X as follows:
 You can run ALKIA-X as follows:
 ```
 conda activate ALKIAX
-taskset $(seq -s, 1 8) python ALKIAX_main.py
+taskset -c 1,2,3,4,5,6,7,8 python ALKIAX_main.py
 ```
 This exact line will lead to a parallelization on CPU cores 1-8.
 
