@@ -22,6 +22,7 @@ and install the following packages:
 ```
 pip install scikit-learn
 pip install casadi
+pip install tqdm
 ```
 
 
