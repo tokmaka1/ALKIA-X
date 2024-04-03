@@ -1,6 +1,11 @@
 # ALKIA-X
-ALKIA-X, the **A**daptive and **L**ocalized **K**ernel **I**nterpolation **A**lgorithm with e**X**trapolated reproducing kernel Hilbert space norm, is an algorithm automatically approximating nonlinear model predictive control (MPC) schemes with closed-loop guarantees.
-Although we proposed ALKIA-X to approximate MPC schemes, the algorithm is equally capable of automatically approximating a wide range of black-box functions with guaranteed bounds on the approximation error.
+ALKIA-X, the **A**daptive and **L**ocalized **K**ernel **I**nterpolation **A**lgorithm with e**X**trapolated reproducing kernel Hilbert space norm, is an algorithm to automatically approximate black-box functions. 
+ALKIA-X ensures:
+* A fast-to-evaluate approximating function;
+* The guaranteed satisfaction of the desired bound on the approximation error;
+* Well-conditioned computations;
+* High level of parallelization.
+We highlight the benefits of ALKIA-X by automatically approximating nonlinear model predictive control (MPC) schemes with closed-loop guarantees. 
 
 
 ## How to cite ALKIA-X
