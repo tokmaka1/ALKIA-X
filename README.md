@@ -7,13 +7,15 @@ ALKIA-X ensures:
 * High level of parallelization.
   
 We highlight the benefits of ALKIA-X by automatically approximating nonlinear model predictive control (MPC) schemes with closed-loop guarantees. 
+Please refer to [1] to cite this code.
 
 ## Dependencies
 
 * Python
-* CasADi and IPOPT for MPC problems
+* [CasADi](https://web.casadi.org/) and [IPOPT](https://coin-or.github.io/Ipopt/) for MPC problems
 
-## Installation guide (or setup)
+
+## Setup
 Create a conda environment 
 ```
 conda create --name ALKIAX
@@ -75,14 +77,11 @@ The pre-trained pickle files for the continous stirred tank reactor or the cold 
 
 
 
-## How to cite ALKIA-X
-@article{Tokmak2023Arxiv, \
-  title={Automatic nonlinear {MPC} approximation with closed-loop guarantees}, \
-  author={Tokmak, Abdullah and Fiedler, Christian and Zeilinger, Melanie N. and Trimpe, Sebastian and Köhler, Johannes}, \
-  journal={arXiv preprint arXiv:2312.10199v1}, \
-  year={2023} \
-}
 
+
+
+#
+[1] Abdullah Tokmak, Christian Fiedler, Melanie N. Zeilinger, Sebastian Trimpe, Johannes Köhler, "[Automatic nonlinear MPC approximation with closed-loop guarantees](https://arxiv.org/pdf/2312.10199.pdf)," arXiv preprint arXiv:2312.10199, 2023.
 
 
 
