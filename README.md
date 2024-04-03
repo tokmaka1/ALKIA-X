@@ -5,6 +5,7 @@ ALKIA-X ensures:
 * The guaranteed satisfaction of the desired bound on the approximation error;
 * Well-conditioned computations;
 * High level of parallelization.
+  
 We highlight the benefits of ALKIA-X by automatically approximating nonlinear model predictive control (MPC) schemes with closed-loop guarantees. 
 
 
