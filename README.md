@@ -9,13 +9,13 @@ ALKIA-X ensures:
 We highlight the benefits of ALKIA-X by automatically approximating nonlinear model predictive control (MPC) schemes with closed-loop guarantees. 
 Please refer to [1] to cite this code.
 
-## Dependencies
+# Dependencies
 
 * Python
 * [CasADi](https://web.casadi.org/) and [IPOPT](https://coin-or.github.io/Ipopt/) for MPC problems
 
 
-## Setup
+# Setup
 Create a conda environment 
 ```
 conda create --name ALKIAX
@@ -27,7 +27,7 @@ pip install casadi
 pip install tqdm
 ```
 
-## Toy example
+# Toy example
 
 
 ## Reproducing experiments
