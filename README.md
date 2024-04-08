@@ -28,9 +28,15 @@ pip install tqdm
 ```
 
 # Toy example
+The current repository has three pre-implemented toy examples to test ALKIA-X on. 
+One of the toy examples is a two-dimensional sinusoide~$f{:}\;[0,1]^2\subseteq\mathbb{R}^2\rightarrow \mathbb{R}R$
+$$
+f(x) = \sin(2\pi x_1)+ \cos(2\pi x_2)
+$$
 
 
-## Reproducing experiments
+# Reproducing experiments of the paper
+## CSTR
 To reproduce the approximation of the MPC scheme for the continious stirred tank reactor, use the following hyperparameters in the ALKIAX_main.py file:
 ```python
 epsilon = 5.1e-3
@@ -46,6 +52,7 @@ parallel = True
 max_storage_termination = np.infty
 ```
 
+## Cold atmospheric plasma
 To reproduce the approximation of the MPC scheme for the cold atmospheric plasma device, use the following hyperparameters in the ALKIAX_main.py file:
 ```python
 epsilon = 1e-6
