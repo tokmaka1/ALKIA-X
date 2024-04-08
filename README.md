@@ -22,16 +22,18 @@ conda create --name ALKIAX
 ```
 and install the following packages:
 ```
+conda activate ALKIAX
 pip install scikit-learn
 pip install casadi
 pip install tqdm
+pip install tikzplotlib
 ```
 
 # Running ALKIA-X 
 You can run ALKIA-X as follows:
 ```
 conda activate ALKIAX
-taskset -c 1,2,3,4,5,6,7,8 python ALKIAX_main.py
+taskset -c 1,2,3,4,5,6,7,8 python3 ALKIAX_main.py
 ```
 This exact line will lead to a parallelization on CPU cores 1-8.
 
