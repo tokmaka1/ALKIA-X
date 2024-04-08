@@ -14,6 +14,7 @@ Please refer to [1] to cite this code.
 * Python
 * [CasADi](https://web.casadi.org/) and [IPOPT](https://coin-or.github.io/Ipopt/) for MPC problems
 
+$1+1=2$
 
 # Setup
 Create a conda environment 
@@ -29,10 +30,36 @@ pip install tqdm
 
 # Toy example
 The current repository has three pre-implemented toy examples to test ALKIA-X on. 
-One of the toy examples is a two-dimensional sinusoide~$f{:}\;[0,1]^2\subseteq\mathbb{R}^2\rightarrow \mathbb{R}R$
-$$
-f(x) = \sin(2\pi x_1)+ \cos(2\pi x_2)
-$$
+One of the toy examples is a two-dimensional sinusoide $f{:} [0,1]^2\subseteq\mathbb{R}^2\rightarrow \mathbb{R}$
+$$f(x) = \sin(2\pi x_1)+ \cos(2\pi x_2),$$ with $x=[x_1,x_2]^\top.$
+The following figure shows the ground truth function evaluated on $90\cdot 10^3$ equidistant inputs.
+
+
+
+
+To execute the toy experiment, use, the following hyperparameters in the ALKIAX_main.py file:
+```python
+epsilon = 5e-3  # max allowed error
+round_n_digits = 14  # rounding
+gt_string = 'sine_2D'
+x_dim, y_dim = ground_truth_dimensions(gt_string)
+number_of_head_nodes = 1
+p_min = 2
+cond_max = 1.15e8
+C_ell = 0.8
+kernel = matern_kernel(sigma=1, ell=C_ell, nu=3/2)
+parallel = True
+max_storage_termination = np.infty
+```
+The epsilon-hyperparameter is the a priori guaranteed maximum approximation error. 
+Decreasing that value will increase the time required to generate the approximation (and vice versa).
+At the end of the ALKIAX_main.py file, select a name to save the pickle file, e.g.:
+```python
+with open('C_root_sine_2D.pickle', 'wb') as handle:
+    pickle.dump(C_root, handle, protocol=![sine_2D_gt](https://github.com/tokmaka1/ALKIA-X/assets/156437267/b799a3cd-eeae-4e7a-a9ad-18a8c8a35357)
+pickle.HIGHEST_PROTOCOL)
+```![sine_2D_gt](https://github.com/tokmaka1/ALKIA-X/assets/156437267/31210a45-e315-411a-b38d-5cb33fed1d28)
+
 
 
 # Reproducing experiments of the paper
@@ -40,7 +67,7 @@ $$
 To reproduce the approximation of the MPC scheme for the continious stirred tank reactor, use the following hyperparameters in the ALKIAX_main.py file:
 ```python
 epsilon = 5.1e-3
-round_n_digits = 14  # rounding
+round_n_digits = 14
 gt_string = 'CSTR_python'
 x_dim, y_dim = ground_truth_dimensions(gt_string)
 number_of_head_nodes = 5**2
@@ -56,7 +83,7 @@ max_storage_termination = np.infty
 To reproduce the approximation of the MPC scheme for the cold atmospheric plasma device, use the following hyperparameters in the ALKIAX_main.py file:
 ```python
 epsilon = 1e-6
-round_n_digits = 14  # rounding
+round_n_digits = 14
 gt_string = 'plasma_python'
 x_dim, y_dim = ground_truth_dimensions(gt_string)
 number_of_head_nodes = 3**3
