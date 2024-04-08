@@ -53,7 +53,7 @@ parallel = True
 max_storage_termination = np.infty
 ```
 The epsilon-hyperparameter is the a priori guaranteed maximum approximation error. 
-Decreasing that value will increase the time required to generate the approximation (and vice versa).
+Decreasing that value will increase the approximation time (and vice versa).
 At the end of the ALKIAX_main.py file, select a name to save the pickle file, e.g.:
 ```python
 with open('C_root_sine_2D.pickle', 'wb') as handle:
