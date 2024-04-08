@@ -22,6 +22,7 @@ conda create --name ALKIAX
 ```
 and install the following packages:
 ```
+conda activate ALKIAX
 pip install scikit-learn
 pip install casadi
 pip install tqdm
