@@ -79,7 +79,7 @@ def post_processing(C, round_n_digits, division_points, gt_string):
         print(f'Time needed for approximating function for equidistant grid per step: {(time.time()-current_time)/X_evaluation.shape[0]*10**6} micro seconds.')
     if gt_string == 'plasma_python':
         return hX, X_evaluation, relevant_fev, total_fev, C
-    elif gt_string == 'cstr_python':
+    elif gt_string == 'CSTR_python':
         gt = cstr_python()
         gt.get_solver()
         # fX_evaluation, infeasible_points = gt.get_function_values(X_evaluation)

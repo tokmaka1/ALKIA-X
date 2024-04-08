@@ -12,7 +12,7 @@ def RMPC_get_samples(solver, X_feed, lb_relaxed, ub_relaxed, con_lb, con_ub, N, 
         raise ValueError("Something went wrong with inserting the feed points into the RMPC script. We have to insert 2D points here. Does the dimension get lost in the Python code?")
 
     for i_iter in range(X_feed.shape[0]):
-        print(i_iter)
+        # print(i_iter)
         x1 = X_feed[i_iter, 0]
         x2 = X_feed[i_iter, 1]
         lb_relaxed[:n] = [x1, x2]
