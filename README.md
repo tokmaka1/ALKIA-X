@@ -38,7 +38,7 @@ The following figure shows the ground truth function evaluated on $90\cdot 10^3$
 ![Sinusoide toy example](sine_2D.png)
 
 
-To execute the toy experiment, use, the following hyperparameters in the ALKIAX_main.py file:
+To execute the toy experiment, use the following hyperparameters in the ALKIAX_main.py file:
 ```python
 epsilon = 5e-3  # max allowed error
 round_n_digits = 14  # rounding
@@ -58,7 +58,7 @@ At the end of the ALKIAX_main.py file, select a name to save the pickle file, e.
 ```python
 with open('C_root_sine_2D.pickle', 'wb') as handle:
     pickle.dump(C_root, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
+```
 
 
 # Reproducing experiments of the paper
