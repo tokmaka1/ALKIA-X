@@ -71,7 +71,7 @@ gt_string = 'CSTR_python'
 x_dim, y_dim = ground_truth_dimensions(gt_string)
 number_of_head_nodes = 5**2
 p_min = 2
-cond_max = 1.2e8
+cond_max = 1.15e8
 C_ell = 0.8
 kernel = matern_kernel(sigma=1, ell=C_ell, nu=3/2)
 parallel = True
