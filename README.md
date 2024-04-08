@@ -106,7 +106,7 @@ with open('C_root_CSTR.pickle', 'wb') as handle:
 You can also use the pre-trained pickle file in this repository (C_root_CSTR.pickle) and directly execute the post processing.
 For the post processing, set 
 ```python
-gt_string = 'cstr_python'
+gt_string = 'CSTR_python'
 ```
 in the ALKIAX-post.py file.
 There, the approximating functions are computed and the maximum error is determined.
