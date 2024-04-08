@@ -35,6 +35,7 @@ $$f(x) = \sin(2\pi x_1)+ \cos(2\pi x_2),$$ with $x=[x_1,x_2]^\top.$
 The following figure shows the ground truth function evaluated on $90\cdot 10^3$ equidistant inputs.
 
 
+![Sinusoide toy example](sine_2D.png)
 
 
 To execute the toy experiment, use, the following hyperparameters in the ALKIAX_main.py file:
@@ -56,9 +57,7 @@ Decreasing that value will increase the time required to generate the approximat
 At the end of the ALKIAX_main.py file, select a name to save the pickle file, e.g.:
 ```python
 with open('C_root_sine_2D.pickle', 'wb') as handle:
-    pickle.dump(C_root, handle, protocol=![sine_2D_gt](https://github.com/tokmaka1/ALKIA-X/assets/156437267/b799a3cd-eeae-4e7a-a9ad-18a8c8a35357)
-pickle.HIGHEST_PROTOCOL)
-```![sine_2D_gt](https://github.com/tokmaka1/ALKIA-X/assets/156437267/31210a45-e315-411a-b38d-5cb33fed1d28)
+    pickle.dump(C_root, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 
 
