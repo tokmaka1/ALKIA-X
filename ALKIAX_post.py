@@ -134,7 +134,7 @@ def closed_loop_approx_plasma(num_iter, C, x=np.array([35, 58, 0]), const=0.5, d
 
 
 if __name__ == '__main__':
-    gt_string = 'sine_2D'
+    gt_string = 'cstr_python'
     if gt_string == 'sine_2D':
         with open('C_root_sine_2D.pickle', 'rb') as handle:
             C = pickle.load(handle)
@@ -145,9 +145,6 @@ if __name__ == '__main__':
         # Determine maximum evaluation error
         max_error = max(abs(hX.flatten()-fX_evaluation))
         print(f'The maximum error is {max_error}, the guaranteed error was {C.epsilon}.')
-
-
-
     elif gt_string == 'plasma_python':
         t = time.time()
         solver, lb_relaxed, ub_relaxed, con_lb, con_ub, n, m, N = plasma_MPC_get_solver()
@@ -164,7 +161,7 @@ if __name__ == '__main__':
             evaluation_times_MPC.append(time_MPC)
         print(f'Average time needed per MPC closed-loop step is: {np.mean(evaluation_times_MPC)} with an std of {np.std(evaluation_times_MPC)}.')
 
-        with open('C_root_plasma_python_75_1e_6_fixed.pickle', 'rb') as handle:
+        with open('C_root_plasma.pickle', 'rb') as handle:
             C = pickle.load(handle)
         _, _, _, _, C = post_processing(C, round_n_digits=14, division_points=50, gt_string=gt_string)
         evaluation_times_approx = []
@@ -192,7 +189,7 @@ if __name__ == '__main__':
         print(f'The RMSEs are {RMSE_1} and {RMSE_2}, respectively. The maximum error (infinity norm) is {max(max(diff_1), max(diff_2))*10**3}e-3.')
         generate_plots_plasma(X_MPC, X_approx, u_list_MPC, u_list_approx)
     elif gt_string == 'cstr_python':
-        with open('C_root_CSTR_51e-3_fixed.pickle', 'rb') as handle:
+        with open('C_root_CSTR.pickle', 'rb') as handle:
             C = pickle.load(handle)
         hX, X_evaluation, relevant_fev, total_fev, C, fX_evaluation, infeasible_points = post_processing(C, 14, 300, gt_string)
         plot_subdomains_2D_CSTR(C, infeasible_points, X_evaluation)

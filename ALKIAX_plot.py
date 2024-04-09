@@ -39,7 +39,8 @@ def plot_gt_2D_CSTR(X_evaluation, fX_evaluation):
     ax.set_xlim(xlim)
     ax.set_ylim(xlim)
     ax.view_init(elev=25, azim=-125)
-    plt.show()
+    # plt.show()
+    plt.savefig('CSTR_gt_DPI_300.pdf', dpi=300)
 
 
 def plot_prediction_2D(X, hX):
@@ -82,7 +83,7 @@ def plot_subdomains_2D_CSTR(C, infeasible_points, X_evaluation):
     hull = ConvexHull(points)
     vertices = hull.vertices
     plt.fill(X_feasible[:, 0][vertices], X_feasible[:, 1][vertices], color='lightgray', alpha=0.8)
-    plt.show()
+    plt.savefig('CSTR_subdomains_DPI_300.pdf', dpi=300)
 
 
 def generate_plots_plasma(X_MPC, X_approx, u_list_MPC, u_list_approx):
