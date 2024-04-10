@@ -13,6 +13,8 @@ Please refer to [1] to cite this code.
 
 * Python
 * [CasADi](https://web.casadi.org/) and [IPOPT](https://coin-or.github.io/Ipopt/) for MPC problems
+* [anytree](https://anytree.readthedocs.io/en/stable/) for the tree structure of the approximation
+* [concurrent.futures](https://docs.python.org/3/library/concurrent.futures.html) for parallel execution
 
 
 # Setup
@@ -20,13 +22,20 @@ Create a conda environment
 ```
 conda create --name ALKIAX
 ```
-and install the following packages:
+and install the following packages depending which libraries ALKIAX inherits:
 ```
 conda activate ALKIAX
+pip install numpy
 pip install scikit-learn
 pip install casadi
 pip install tqdm
 pip install tikzplotlib
+pip install matplotlib
+pip install anytree
+pip install TIME-python
+pip install pickle
+pip install futures
+pip install scipy
 ```
 
 # Running ALKIA-X 
