@@ -1,8 +1,8 @@
 import numpy as np
 from plasma_MPC_get_solver import plasma_MPC_get_solver
 from plasma_MPC_get_samples import plasma_MPC_get_samples
-from RMPC_get_solver import RMPC_get_solver
-from RMPC_get_samples import RMPC_get_samples
+from CSTR_MPC_get_solver import CSTR_MPC_get_solver
+from CSTR_MPC_get_samples import CSTR_MPC_get_samples
 
 
 class plasma_python():

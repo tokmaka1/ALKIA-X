@@ -34,7 +34,7 @@ max_storage_termination (int): in mega-byte, upper bound on the size of the file
     -> Useful for capacity constraints of, e.g., microcontrollers
     -> Set max_storage_termination = np.inf to only break when sufficient accuracy is guaranteed
 '''
-epsilon = 5e-3  # max allowed error
+epsilon = 5.1e-3  # max allowed error
 round_n_digits = 14  # rounding
 gt_string = 'CSTR_python'
 x_dim, y_dim = ground_truth_dimensions(gt_string)
@@ -65,7 +65,9 @@ M_list: List of number of equidistant samples per axis, e.g., [5,9,17,33]. The m
 '''
 C_root = root_node(global_domain)
 dict_head_nodes = head_nodes(C_root, number_of_head_nodes, round_n_digits)
-M_list = compute_M_list(M_min, cond_max, kernel, C_root)  # [5, 9, 17, 33]
+M_list = compute_M_list(M_min, cond_max, kernel, C_root)
+# For plasma python, you may consider using M_list=[5, 9, 17] directly
+# since the computation of the condition number with 33^3 samples might crash.
 print(f'M_max={M_list[-1]}')
 
 # Determine type of ground truth

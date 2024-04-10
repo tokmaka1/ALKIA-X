@@ -31,7 +31,7 @@ def plot_gt_2D_CSTR(X_evaluation, fX_evaluation):
     ax = fig.add_subplot(projection='3d')
     filtered_indices = np.logical_and(fX_evaluation >= 0, fX_evaluation <= 2.1)  # only plot that part
     ax.plot_trisurf(X_evaluation_reshaped[:, 0][filtered_indices], X_evaluation_reshaped[:, 1][filtered_indices], fX_evaluation[filtered_indices])
-    # surf = ax.plot_trisurf(X_evaluation_reshaped[:, 0][filtered_indices], X_evaluation_reshaped[:, 1][filtered_indices], fX_evaluation[filtered_indices], cmap=cm.jet, linewidth=0)
+    surf = ax.plot_trisurf(X_evaluation_reshaped[:, 0][filtered_indices], X_evaluation_reshaped[:, 1][filtered_indices], fX_evaluation[filtered_indices], cmap=cm.jet, linewidth=0)
     xlim = (-0.2, 0.2)
     xticks = [-0.2, -0.1, 0, 0.1, 0.2]
     ax.set_xticks(xticks)
@@ -39,8 +39,7 @@ def plot_gt_2D_CSTR(X_evaluation, fX_evaluation):
     ax.set_xlim(xlim)
     ax.set_ylim(xlim)
     ax.view_init(elev=25, azim=-125)
-    # plt.show()
-    plt.savefig('CSTR_gt_DPI_300.pdf', dpi=300)
+    plt.show()
 
 
 def plot_prediction_2D(X, hX):
@@ -71,7 +70,7 @@ def plot_subdomains_2D_CSTR(C, infeasible_points, X_evaluation):
         shifted_D = current_node.D
         D = shifted_D.copy()
         D[0, 0] = shifted_D[0, 0]*x_end[0] + (1-shifted_D[0, 0])*x_begin[0]
-        D[0, 1] = shifted_D[0, ]*x_end[1] + (1-shifted_D[0, ])*x_begin[1]
+        D[0, 1] = shifted_D[0, 1]*x_end[1] + (1-shifted_D[0, 1])*x_begin[1]
         D[1, 0] = shifted_D[1, 0]*x_end[0] + (1-shifted_D[1, 0])*x_begin[0]
         D[1, 1] = shifted_D[1, 1]*x_end[1] + (1-shifted_D[1, 1])*x_begin[1]
         plt.plot([D[0][0], D[0][1], D[0][1], D[0][0], D[0][0]], [D[1][0], D[1][0], D[1][1], D[1][1], D[1][0]], '-k', linewidth=0.4)
@@ -83,7 +82,7 @@ def plot_subdomains_2D_CSTR(C, infeasible_points, X_evaluation):
     hull = ConvexHull(points)
     vertices = hull.vertices
     plt.fill(X_feasible[:, 0][vertices], X_feasible[:, 1][vertices], color='lightgray', alpha=0.8)
-    plt.savefig('CSTR_subdomains_DPI_300.pdf', dpi=300)
+    plt.show()
 
 
 def generate_plots_plasma(X_MPC, X_approx, u_list_MPC, u_list_approx):
@@ -93,16 +92,14 @@ def generate_plots_plasma(X_MPC, X_approx, u_list_MPC, u_list_approx):
     plt.plot(range(len(X_MPC)), 42.5*np.ones(len(X_MPC)), color='black')
     plt.xlabel('Time steps')
     plt.ylabel('$x_1$')
-    # plt.show()
-    tikzplotlib.save('x1_plasma_final.tex')
+    plt.show()
 
     plt.figure()
     plt.plot(range(len(X_MPC)), X_MPC[:, 1], color='blue')
     plt.plot(range(len(X_MPC)), X_approx[:, 1], color='magenta')
     plt.xlabel('Time steps')
     plt.ylabel('$x_2')
-    # plt.show()
-    tikzplotlib.save('x2_plasma_final.tex')
+    plt.show()
 
     plt.figure()
     plt.plot(range(len(X_MPC)), X_MPC[:, 2], color='blue')
@@ -110,21 +107,18 @@ def generate_plots_plasma(X_MPC, X_approx, u_list_MPC, u_list_approx):
     plt.plot(range(len(X_MPC)), 10*np.ones(len(X_MPC)), color='green')
     plt.xlabel('Time steps')
     plt.ylabel('$x_3$')
-    # plt.show()
-    tikzplotlib.save('x3_plasma_final.tex')
+    plt.show()
 
     plt.figure()
     plt.step(range(len(u_list_MPC)), u_list_MPC[:, 0], color='blue')
     plt.step(range(len(u_list_MPC)), u_list_approx[:, 0], color='magenta')
     plt.xlabel('Time steps')
     plt.ylabel('$u_1$')
-    # plt.show()
-    tikzplotlib.save('u1_plasma_final.tex')
+    plt.show()
 
     plt.figure()
     plt.step(range(len(u_list_MPC)), u_list_MPC[:, 1], color='blue')
     plt.step(range(len(u_list_MPC)), u_list_approx[:, 1], color='magenta')
     plt.xlabel('Time steps')
     plt.ylabel('$u_2$')
-    # plt.show()
-    tikzplotlib.save('u2_plasma_final.tex')
+    plt.show()

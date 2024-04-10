@@ -2,6 +2,13 @@ import numpy as np
 from casadi import *
 
 
+'''
+MPC formulation for the plasma scheme taken from "Safe and Fast Learning-based 
+Model Predictive Control of Nonlinear Systems with Applications to Cold Atmospheric Plasmas,"
+Bonzanini A., 2022.
+'''
+
+
 def plasma_MPC_get_solver():
     n = 3  # state dimension
     m = 2  # input dimension

@@ -18,7 +18,7 @@ def post_processing(C, round_n_digits, division_points, gt_string):
         C (anytree.node): head node corresponding to global domain
         round_n_digits (int): for numerical rounding reasons
         division_points (int): How many equidistant points per axis for evaluation
-        gt_string (string): cstr_python or plasma_python
+        gt_string (string): CSTR_python, sine_2D or plasma_python
     Returns:
         hX (array): approx. function evaluated at X_evaluation
         X_evaluation (array): array of equidistant samples
@@ -134,7 +134,7 @@ def closed_loop_approx_plasma(num_iter, C, x=np.array([35, 58, 0]), const=0.5, d
 
 
 if __name__ == '__main__':
-    gt_string = 'cstr_python'
+    gt_string = 'sine_2D'
     if gt_string == 'sine_2D':
         with open('C_root_sine_2D.pickle', 'rb') as handle:
             C = pickle.load(handle)
@@ -188,9 +188,9 @@ if __name__ == '__main__':
         RMSE_2 = sum(diff_2)/len(diff_2)
         print(f'The RMSEs are {RMSE_1} and {RMSE_2}, respectively. The maximum error (infinity norm) is {max(max(diff_1), max(diff_2))*10**3}e-3.')
         generate_plots_plasma(X_MPC, X_approx, u_list_MPC, u_list_approx)
-    elif gt_string == 'cstr_python':
+    elif gt_string == 'CSTR_python':
         with open('C_root_CSTR.pickle', 'rb') as handle:
             C = pickle.load(handle)
         hX, X_evaluation, relevant_fev, total_fev, C, fX_evaluation, infeasible_points = post_processing(C, 14, 300, gt_string)
-        plot_subdomains_2D_CSTR(C, infeasible_points, X_evaluation)
         plot_gt_2D_CSTR(X_evaluation, fX_evaluation)
+        plot_subdomains_2D_CSTR(C, infeasible_points, X_evaluation)
