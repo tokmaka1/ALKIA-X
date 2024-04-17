@@ -140,8 +140,8 @@ if __name__ == '__main__':
             C = pickle.load(handle)
         hX, X_evaluation, relevant_fev, total_fev, C, fX_evaluation = post_processing(C, round_n_digits=14, division_points=300, gt_string=gt_string)
         # Plot the ground truth and the prediction
-        plot_gt_2D(X_evaluation, fX_evaluation)
-        plot_prediction_2D(X_evaluation, hX.flatten())
+        # plot_gt_2D(X_evaluation, fX_evaluation)
+        # plot_prediction_2D(X_evaluation, hX.flatten())
         # Determine maximum evaluation error
         max_error = max(abs(hX.flatten()-fX_evaluation))
         print(f'The maximum error is {max_error}, the guaranteed error was {C.epsilon}.')

@@ -34,11 +34,11 @@ max_storage_termination (int): in mega-byte, upper bound on the size of the file
     -> Useful for capacity constraints of, e.g., microcontrollers
     -> Set max_storage_termination = np.inf to only break when sufficient accuracy is guaranteed
 '''
-epsilon = 5.1e-3  # max allowed error
+epsilon = 5e-3  # max allowed error
 round_n_digits = 14  # rounding
-gt_string = 'CSTR_python'
+gt_string = 'sine_2D'
 x_dim, y_dim = ground_truth_dimensions(gt_string)
-number_of_head_nodes = 1
+number_of_head_nodes = 4
 p_min = 2
 cond_max = 1.15e8
 C_ell = 0.8
@@ -190,8 +190,7 @@ for head_node in dict_head_nodes.values():
                 # Delete done nodes from all nodes
                 del dict_all_nodes[done_node]
             set_done_nodes = set()
-        # TODO: Difference between dict_nodes and dict_all_nodes and the necessaty?
-    # Delete 'infeasible_domain' and 'name' entries for nodes to delete
+      # Delete 'infeasible_domain' and 'name' entries for nodes to delete
     if not node_to_delete.is_head:
         del node_to_delete.parent.__dict__['infeasible_domain']
         # del node_to_delete.parent.__dict__['name']

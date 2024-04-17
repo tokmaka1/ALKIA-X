@@ -12,7 +12,7 @@ Please refer to the [1] to cite this code.
 [1] Abdullah Tokmak, Christian Fiedler, Melanie N. Zeilinger, Sebastian Trimpe, Johannes Köhler, "[Automatic nonlinear MPC approximation with closed-loop guarantees](https://arxiv.org/pdf/2312.10199.pdf)," arXiv preprint arXiv:2312.10199, 2023.
 
 
-# Dependencies
+# Dependencies and setup
 
 * Python
 * [CasADi](https://web.casadi.org/) and [IPOPT](https://coin-or.github.io/Ipopt/) for MPC problems
@@ -20,26 +20,11 @@ Please refer to the [1] to cite this code.
 * [concurrent.futures](https://docs.python.org/3/library/concurrent.futures.html) for parallel execution
 
 
-# Setup
-Create a conda environment 
+Create a conda environment using the yml file:
 ```
-conda create --name ALKIAX
+conda env create -f ALKIAX.yml
 ```
-and install the following packages depending which libraries ALKIAX inherits:
-```
-conda activate ALKIAX
-pip install numpy
-pip install scikit-learn
-pip install casadi
-pip install tqdm
-pip install tikzplotlib
-pip install matplotlib
-pip install anytree
-pip install TIME-python
-pip install pickle
-pip install futures
-pip install scipy
-```
+
 
 # Running ALKIA-X 
 You can run ALKIA-X as follows:

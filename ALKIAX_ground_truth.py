@@ -37,7 +37,7 @@ class cstr_python():
         self.y_dim = 1
 
     def get_solver(self):
-        self.solver, self.lb_relaxed, self.ub_relaxed, self.con_lb, self.con_ub, self.N, self.m, self.n = RMPC_get_solver()
+        self.solver, self.lb_relaxed, self.ub_relaxed, self.con_lb, self.con_ub, self.N, self.m, self.n = CSTR_MPC_get_solver()
 
     def get_function_values(self, X_feed_normalized):
         # Re-shift our input here
@@ -50,7 +50,7 @@ class cstr_python():
         for i in range(X_feed_reshaped.shape[0]):
             for k in range(X_feed_reshaped.shape[1]):
                 X_feed_reshaped[i, k] = X_feed_reshaped[i, k]*x_end[k] + (1-X_feed_reshaped[i, k])*x_begin[k]
-        u_list, infeasible_points = RMPC_get_samples(self.solver, X_feed_reshaped, self.lb_relaxed, self.ub_relaxed, self.con_lb, self.con_ub, self.N, self.m, self.n)
+        u_list, infeasible_points = CSTR_MPC_get_samples(self.solver, X_feed_reshaped, self.lb_relaxed, self.ub_relaxed, self.con_lb, self.con_ub, self.N, self.m, self.n)
         return u_list, infeasible_points
 
 
