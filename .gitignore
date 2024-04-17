@@ -1,0 +1,13 @@
+# Ignore jit files
+*.c
+*.o
+*.so
+
+# Ignore head_nodes folder
+head_nodes/
+
+# Ignore figures
+*.png
+*.jpg
+*.pdf
+*.tex
