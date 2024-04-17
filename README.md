@@ -7,7 +7,9 @@ ALKIA-X ensures:
 * High level of parallelization.
   
 We highlight the benefits of ALKIA-X by automatically approximating nonlinear model predictive control (MPC) schemes with closed-loop guarantees. 
-Please refer to [1] to cite this code.
+Please refer to the following to cite this code: \\
+Abdullah Tokmak, Christian Fiedler, Melanie N. Zeilinger, Sebastian Trimpe, Johannes Köhler, "[Automatic nonlinear MPC approximation with closed-loop guarantees](https://arxiv.org/pdf/2312.10199.pdf)," arXiv preprint arXiv:2312.10199, 2023.
+
 
 # Dependencies
 
@@ -156,14 +158,6 @@ First, the closed-loop trajectories of the MPC are determined.
 Then, the approximate MPC using ALKIA-X is computed and the closed-loop trajectories of the approximate MPC are determined.
 Moreover, the online evaluation of the MPC and the approximate MPC are assessed.
 Before plotting the closed-loop trajectories, the maximum input error between the MPC and the approximate MPC on the closed-loop state trajectory of the approximate MPC is calculated.
-
-
-
-
-
-
-#
-[1] Abdullah Tokmak, Christian Fiedler, Melanie N. Zeilinger, Sebastian Trimpe, Johannes Köhler, "[Automatic nonlinear MPC approximation with closed-loop guarantees](https://arxiv.org/pdf/2312.10199.pdf)," arXiv preprint arXiv:2312.10199, 2023.
 
 
 
