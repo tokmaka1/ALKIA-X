@@ -65,15 +65,15 @@ To execute the toy experiment, use the following hyperparameters in the ALKIAX_m
 ```python
 epsilon = 5e-3  # max allowed error
 round_n_digits = 14  # rounding
-gt_string = 'sine_2D'
+gt_string = 'sine_2D'  # function to approximate
 x_dim, y_dim = ground_truth_dimensions(gt_string)
-number_of_head_nodes = 1
-p_min = 2
-cond_max = 1.15e8
-C_ell = 0.8
-kernel = matern_kernel(sigma=1, ell=C_ell, nu=3/2)
-parallel = True
-max_storage_termination = np.infty
+number_of_head_nodes = 1  # no a-priori partitioning of the domain
+p_min = 2  # minimum number of samples per sub-domain: (1+2**p_min)**n
+cond_max = 1.15e8  # upper bound on the condition number of covariance matrices
+C_ell = 0.8  # length scale parameter
+kernel = matern_kernel(sigma=1, ell=C_ell, nu=3/2)  # chosen kernel
+parallel = True  # for parallelization
+max_storage_termination = np.infty  # no bound on the memory requirements
 ```
 The epsilon-hyperparameter is the a priori guaranteed maximum approximation error. 
 Decreasing that value will increase the approximation time (and vice versa).
@@ -106,7 +106,7 @@ cond_max = 1.15e8
 C_ell = 0.8
 kernel = matern_kernel(sigma=1, ell=C_ell, nu=3/2)
 parallel = True
-max_storage_termination = np.infty
+max_storage_termination = np.infty  # no bound on the memory requirements
 ```
 
 Save the resulting pickle file that contains the samples at the end of the ALKIAX_main.py file:
@@ -140,7 +140,7 @@ cond_max = 3.4e7
 C_ell = 0.8
 kernel = matern_kernel(sigma=1, ell=C_ell, nu=3/2)
 parallel = True
-max_storage_termination = 75
+max_storage_termination = 75  # bound on the memory requirements, in MB
 ```
 
 Save the resulting pickle file that contains the samples at the end of the ALKIAX_main.py file:
