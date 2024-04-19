@@ -44,9 +44,7 @@ The following figure shows the ground truth function evaluated on $90\cdot 10^3$
 
 
 ![Sinusoide toy example](sine_2D.png)
-<div style="text-align:center">
-  <img src="ackley.png" alt="Ackley function" />
-</div>
+
 
 To execute the toy experiment, use the following hyperparameters in the ALKIAX_main.py file:
 ```python
