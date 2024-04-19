@@ -11,3 +11,6 @@ head_nodes/
 *.jpg
 *.pdf
 *.tex
+
+# Ignore Ackley result
+C_root_ackley*

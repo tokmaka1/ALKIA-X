@@ -96,21 +96,38 @@ class sine_3D(waterfall_2D):
         return np.array([fX, fX + 1]).T, infeasible_points
 
 
+class ackley(waterfall_2D):
+    def get_function_values(self, X):
+        # Scale the inputs to the range [-5, 5]
+        X_scaled = X * 10 - 5
+        x1, x2 = X_scaled[:, 0], X_scaled[:, 1]
+        a = 20
+        b = 0.2
+        c = 2 * np.pi
+        term1 = -a * np.exp(-b * np.sqrt((x1**2 + x2**2) / 2))
+        term2 = -np.exp((np.cos(c * x1) + np.cos(c * x2)) / 2)
+        term3 = a + np.exp(1)
+        infeasible_points = np.zeros_like(term1).astype(int)
+        return term1 + term2 + term3, infeasible_points
+
+
 def ground_truth(string, eng=None):
     if string == 'plasma_python':
         return plasma_python()
-    if string == 'CSTR_python':
+    elif string == 'CSTR_python':
         return cstr_python()
-    if string == 'waterfall_2D':
+    elif string == 'waterfall_2D':
         return waterfall_2D()
     elif string == 'sine_2D':
         return sine_2D()
     elif string == 'sine_3D':
         return sine_3D()
+    elif string == 'ackley':
+        return ackley()
 
 
 def ground_truth_dimensions(string):
-    if string == 'waterfall_2D' or string == 'sine_2D' or string == 'CSTR_python':
+    if string == 'waterfall_2D' or string == 'sine_2D' or string == 'CSTR_python' or string == 'ackley':
         x_dim = 2
         y_dim = 1
     if string == 'sine_3D' or string == 'plasma' or string == 'plasma_python':
@@ -120,10 +137,8 @@ def ground_truth_dimensions(string):
 
 
 def ground_truth_type(string):
-    if string == 'waterfall_2D' or string == 'sine_2D' or string == 'sine_3D':
+    if string == 'waterfall_2D' or string == 'sine_2D' or string == 'sine_3D' or string == 'ackley':
         gt_type = 'toy_example'
-    elif string == 'CSTR' or string == 'plasma':
-        gt_type = 'MPC'
     elif string == 'plasma_python' or 'CSTR_python':
         gt_type = 'MPC Python'
     return gt_type

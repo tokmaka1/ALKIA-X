@@ -93,7 +93,7 @@ def post_processing(C, round_n_digits, division_points, gt_string):
                     max_error = error
         print(f'Maximum error is {max_error} with a priori guaranteed error {C.epsilon}.')
         return hX, X_evaluation, relevant_fev, total_fev, C, fX_evaluation, infeasible_points
-    elif gt_string == 'sine_2D' or gt_string == 'waterfall_2D':
+    elif gt_string == 'sine_2D' or gt_string == 'waterfall_2D' or gt_string == 'ackley':
         gt = ground_truth(gt_string)
         fX_evaluation, _ = gt.get_function_values(X_evaluation)
         return hX, X_evaluation, relevant_fev, total_fev, C, fX_evaluation
@@ -134,7 +134,7 @@ def closed_loop_approx_plasma(num_iter, C, x=np.array([35, 58, 0]), const=0.5, d
 
 
 if __name__ == '__main__':
-    gt_string = 'sine_2D'
+    gt_string = 'ackley'
     if gt_string == 'sine_2D':
         with open('C_root_sine_2D.pickle', 'rb') as handle:
             C = pickle.load(handle)
@@ -145,6 +145,18 @@ if __name__ == '__main__':
         # Determine maximum evaluation error
         max_error = max(abs(hX.flatten()-fX_evaluation))
         print(f'The maximum error is {max_error}, the guaranteed error was {C.epsilon}.')
+    elif gt_string == 'ackley':
+        with open('C_root_ackley_5e-3.pickle', 'rb') as handle:
+            C = pickle.load(handle)
+        hX, X_evaluation, relevant_fev, total_fev, C, fX_evaluation = post_processing(C, round_n_digits=14, division_points=500, gt_string=gt_string)
+        # Plot the ground truth and the prediction
+        # plot_gt_2D(X_evaluation, fX_evaluation)
+        # plot_prediction_2D(X_evaluation, hX.flatten())
+        # Determine maximum evaluation error
+        max_error = max(abs(hX.flatten()-fX_evaluation))
+        print(f'The maximum error is {max_error}, the guaranteed error was {C.epsilon}.')
+
+    
     elif gt_string == 'plasma_python':
         t = time.time()
         solver, lb_relaxed, ub_relaxed, con_lb, con_ub, n, m, N = plasma_MPC_get_solver()

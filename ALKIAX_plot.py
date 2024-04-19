@@ -20,6 +20,28 @@ def plot_gt_2D(X, fX):
     plt.show()
 
 
+def plot_error(X, hX, fX, epsilon):
+    fig = plt.figure()
+    ax = fig.add_subplot(projection='3d')
+    error = np.abs(hX-fX)
+
+    # Envelope the function values with plus and minus epsilon
+    error_bound = [epsilon]*X.shape[0]
+
+    # Plot the original surface
+    ax.plot_trisurf(X[:, 0], X[:, 1], error, alpha=1, cmap=cm.jet, linewidth=0)
+
+    # Plot the enveloped surfaces with very transparent color
+    ax.plot_trisurf(X[:, 0], X[:, 1], error_bound, color='black', alpha=0.1, linewidth=0)
+
+    plt.xlabel('$x_1$')
+    plt.ylabel('$x_2$')
+    ax.set_zlabel('Error')
+    plt.title('Ackley function')
+    plt.show()
+
+
+
 def plot_gt_2D_CSTR(X_evaluation, fX_evaluation):
     X_evaluation_reshaped = X_evaluation.copy()
     x_begin = [-0.2, -0.2]

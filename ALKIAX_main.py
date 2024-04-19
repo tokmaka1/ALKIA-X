@@ -20,7 +20,7 @@ import datetime
 '''Hyperparameters
 epsilon (float): maximum allowed error for the approximation framework. Connection to RMPC: The maximum input error allowed by the input robustness of the MPC scheme.
 round_n_digits (int): to omit cases like  0.16666666666 != 0.16666666667. Take a high value to ensure accuracy but stay below machine accurary (e.g. 14)
-gt_string (string): String corresponding to ground truth. Currently implemented: 'waterfall_2D', 'CSTR_python', 'plasma_python', 'sine_2D', 'sine_3D'
+gt_string (string): String corresponding to ground truth. Currently implemented: 'waterfall_2D', 'CSTR_python', 'plasma_python', 'sine_2D', 'sine_3D', 'ackley'
     ->x_dim (int): state-dimension of the MPC, input-dimension of the approximating function
     ->y_dim (int): input-dimension of the MPC, output-dimension of the approximating function
 number_of_head_nodes (int): Initial partitioning of the global domain. Has to be of form i**x_dim, i=1,2,3,4, ...
@@ -36,9 +36,9 @@ max_storage_termination (int): in mega-byte, upper bound on the size of the file
 '''
 epsilon = 5e-3  # max allowed error
 round_n_digits = 14  # rounding
-gt_string = 'sine_2D'
+gt_string = 'ackley'
 x_dim, y_dim = ground_truth_dimensions(gt_string)
-number_of_head_nodes = 4
+number_of_head_nodes = 16
 p_min = 2
 cond_max = 1.15e8
 C_ell = 0.8
@@ -220,5 +220,5 @@ time_elapsed_total = time.time() - current_time
 print(f'Total time: {time_elapsed_total}')
 C_root.time_elapsed = time_elapsed_total
 C_root.epsilon = epsilon
-#with open('C_root_sine_2D.pickle', 'wb') as handle:
-#    pickle.dump(C_root, handle, protocol=pickle.HIGHEST_PROTOCOL)
+with open('ackley_5e-3.pickle', 'wb') as handle:
+   pickle.dump(C_root, handle, protocol=pickle.HIGHEST_PROTOCOL)
