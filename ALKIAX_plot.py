@@ -17,29 +17,21 @@ def plot_gt_2D(X, fX):
     plt.ylabel('$x_2$')
     ax.set_zlabel('$f(x)$')
     plt.title('Ground Truth')
-    plt.show()
+    # plt.show()
 
 
-def plot_error(X, hX, fX, epsilon):
+def plot_prediction_ackley(X, hX):
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d')
-    error = np.abs(hX-fX)
-
-    # Envelope the function values with plus and minus epsilon
-    error_bound = [epsilon]*X.shape[0]
-
-    # Plot the original surface
-    ax.plot_trisurf(X[:, 0], X[:, 1], error, alpha=1, cmap=cm.jet, linewidth=0)
-
-    # Plot the enveloped surfaces with very transparent color
-    ax.plot_trisurf(X[:, 0], X[:, 1], error_bound, color='black', alpha=0.1, linewidth=0)
-
+    ax.plot_trisurf(X[:, 0], X[:, 1], hX)
+    surf = ax.plot_trisurf(X[:, 0], X[:, 1], hX, cmap=cm.jet, linewidth=0)
+    # fig.colorbar(surf)
     plt.xlabel('$x_1$')
     plt.ylabel('$x_2$')
-    ax.set_zlabel('Error')
-    plt.title('Ackley function')
-    plt.show()
-
+    # ax.set_zlabel('$h(x)$')
+    plt.title('Ackley function approximation with ALKIA-X')
+    plt.savefig('ackley.png')
+    # plt.show()
 
 
 def plot_gt_2D_CSTR(X_evaluation, fX_evaluation):

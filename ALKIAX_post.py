@@ -1,5 +1,5 @@
 from ALKIAX_ground_truth import waterfall_2D, sine_2D, sine_3D, plasma_python, cstr_python, ground_truth
-from ALKIAX_plot import plot_gt_2D_CSTR, plot_prediction_2D, plot_gt_2D, plot_subdomains_2D_CSTR, generate_plots_plasma
+from ALKIAX_plot import plot_gt_2D_CSTR, plot_prediction_2D, plot_gt_2D, plot_subdomains_2D_CSTR, generate_plots_plasma, plot_prediction_ackley
 from ALKIAX_functions import approximation, binary_number, decimal_number, grid
 from ALKIAX_kernel import matern_kernel
 import numpy as np
@@ -146,17 +146,15 @@ if __name__ == '__main__':
         max_error = max(abs(hX.flatten()-fX_evaluation))
         print(f'The maximum error is {max_error}, the guaranteed error was {C.epsilon}.')
     elif gt_string == 'ackley':
-        with open('C_root_ackley_5e-3.pickle', 'rb') as handle:
+        with open('C_root_ackley.pickle', 'rb') as handle:
             C = pickle.load(handle)
-        hX, X_evaluation, relevant_fev, total_fev, C, fX_evaluation = post_processing(C, round_n_digits=14, division_points=500, gt_string=gt_string)
+        hX, X_evaluation, relevant_fev, total_fev, C, fX_evaluation = post_processing(C, round_n_digits=14, division_points=300, gt_string=gt_string)
         # Plot the ground truth and the prediction
-        # plot_gt_2D(X_evaluation, fX_evaluation)
-        # plot_prediction_2D(X_evaluation, hX.flatten())
+        plot_gt_2D(X_evaluation, fX_evaluation)
+        plot_prediction_ackley(X_evaluation, hX.flatten())
         # Determine maximum evaluation error
         max_error = max(abs(hX.flatten()-fX_evaluation))
         print(f'The maximum error is {max_error}, the guaranteed error was {C.epsilon}.')
-
-    
     elif gt_string == 'plasma_python':
         t = time.time()
         solver, lb_relaxed, ub_relaxed, con_lb, con_ub, n, m, N = plasma_MPC_get_solver()

@@ -34,7 +34,7 @@ max_storage_termination (int): in mega-byte, upper bound on the size of the file
     -> Useful for capacity constraints of, e.g., microcontrollers
     -> Set max_storage_termination = np.inf to only break when sufficient accuracy is guaranteed
 '''
-epsilon = 5e-3  # max allowed error
+epsilon = 5e-2  # max allowed error
 round_n_digits = 14  # rounding
 gt_string = 'ackley'
 x_dim, y_dim = ground_truth_dimensions(gt_string)
@@ -220,5 +220,5 @@ time_elapsed_total = time.time() - current_time
 print(f'Total time: {time_elapsed_total}')
 C_root.time_elapsed = time_elapsed_total
 C_root.epsilon = epsilon
-with open('ackley_5e-3.pickle', 'wb') as handle:
+with open('ackley.pickle', 'wb') as handle:
    pickle.dump(C_root, handle, protocol=pickle.HIGHEST_PROTOCOL)
