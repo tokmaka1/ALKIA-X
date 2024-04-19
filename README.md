@@ -30,14 +30,14 @@ conda env create -f ALKIAX.yml
 You can run ALKIA-X as follows:
 ```
 conda activate ALKIAX
-taskset -c 1,2,3,4,5,6,7,8 python3 ALKIAX_main.py
+taskset -c 1,2,3,4,5,6,7,8 python ALKIAX_main.py
 ```
 This exact line will lead to a parallelization on CPU cores 1-8.
 
 
 
 # Toy example
-The current repository has three pre-implemented toy examples to test ALKIA-X on. 
+## 2D sinusoide
 One of the toy examples is a two-dimensional sinusoide $f{:} [0,1]^2\subseteq\mathbb{R}^2\rightarrow \mathbb{R}$
 $$f(x) = \sin(2\pi x_1)+ \cos(2\pi x_2),$$ with $x=[x_1,x_2]^\top.$
 The following figure shows the ground truth function evaluated on $90\cdot 10^3$ equidistant inputs.
@@ -56,7 +56,7 @@ number_of_head_nodes = 1  # no a-priori partitioning of the domain
 p_min = 2  # minimum number of samples per sub-domain: (1+2**p_min)**n
 cond_max = 1.15e8  # upper bound on the condition number of covariance matrices
 C_ell = 0.8  # length scale parameter
-kernel = matern_kernel(sigma=1, ell=C_ell, nu=3/2)  # chosen kernel
+kernel = matern_kernel(sigma=1, ell=C_ell, nu=3/2)
 parallel = True  # for parallelization
 max_storage_termination = np.infty  # no bound on the memory requirements
 ```
@@ -75,6 +75,45 @@ gt_string = 'sine_2D'
 in the ALKIAX_post.py file. 
 There, the approximating functions are computed and the maximum error is determined.
 Moreover, the ground truth $f$ and the approximating function $h$ are plotted.
+
+## Ackley function
+The Ackley function is given by $f{:} [0,1]^2\subseteq\mathbb{R}^2\rightarrow \mathbb{R}$
+$$fx) = -20 \exp\left(-0.2 \sqrt{\frac{x_1^2 + x_2^2}{2}}\right) - \exp\left(\frac{\cos(2\pi x_1) + \cos(2\pi x_2)}{2}\right) + 20 + e
+,$$ with $x=[x_1,x_2]^\top.$
+The following figure shows the ground truth function evaluated on $250\cdot 10^3$ equidistant inputs.
+
+
+![Ackley function](ackley.png)
+
+
+To execute the toy experiment, use the following hyperparameters in the ALKIAX_main.py file:
+```python
+epsilon = 5e-2
+round_n_digits = 14
+gt_string = 'ackley'
+x_dim, y_dim = ground_truth_dimensions(gt_string)
+number_of_head_nodes = 16  # 16 a priori partitions
+p_min = 2
+cond_max = 1.15e8
+C_ell = 0.8
+kernel = matern_kernel(sigma=1, ell=C_ell, nu=3/2)
+parallel = True
+max_storage_termination = np.infty
+```
+Save the resulting pickle file that contains the samples at the end of the ALKIAX_main.py file:
+```python
+with open('C_root_ackley.pickle', 'wb') as handle:
+    pickle.dump(C_root, handle, protocol=pickle.HIGHEST_PROTOCOL)
+```
+
+Then, execute the post processing by setting 
+```python
+gt_string = 'ackley'
+```
+in the ALKIAX_post.py file. 
+There, the approximating functions are computed and the maximum error is determined.
+Moreover, the ground truth $f$ and the approximating function $h$ are plotted.
+
 
 
 # Reproducing experiments of the paper
