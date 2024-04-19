@@ -78,7 +78,7 @@ Moreover, the ground truth $f$ and the approximating function $h$ are plotted.
 
 ## Ackley function
 The Ackley function is given by $f{:} [0,1]^2\subseteq\mathbb{R}^2\rightarrow \mathbb{R}$
-$$fx) = -20 \exp\left(-0.2 \sqrt{\frac{x_1^2 + x_2^2}{2}}\right) - \exp\left(\frac{\cos(2\pi x_1) + \cos(2\pi x_2)}{2}\right) + 20 + e
+$$f(x) = -20 \exp\left(-0.2 \sqrt{\frac{x_1^2 + x_2^2}{2}}\right) - \exp\left(\frac{\cos(2\pi x_1) + \cos(2\pi x_2)}{2}\right) + 20 + e
 ,$$ with $x=[x_1,x_2]^\top.$
 The following figure shows the ground truth function evaluated on $250\cdot 10^3$ equidistant inputs.
 
