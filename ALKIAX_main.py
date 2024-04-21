@@ -4,18 +4,19 @@ Author: Abdullah Tokmak (abdullah.tokmak@aalto.fi)
 This is the main execution file.
 '''
 
+import numpy as np
+import time
+import os
+import datetime
+import pickle
+import concurrent.futures
+from anytree import PreOrderIter
+
 from ALKIAX_ground_truth import ground_truth_dimensions, ground_truth_type, ground_truth
 from ALKIAX_kernel import matern_kernel
-import numpy as np
 from ALKIAX_functions import \
     root_node, head_nodes, compute_M_list, relevant_dict_total_f
 from ALKIAX_approximation import node_approximation_procedure
-import time
-import pickle
-import concurrent.futures
-import os
-from anytree import PreOrderIter
-import datetime
 
 '''Hyperparameters
 epsilon (float): maximum allowed error for the approximation framework. Connection to RMPC: The maximum input error allowed by the input robustness of the MPC scheme.
